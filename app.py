@@ -1,17 +1,18 @@
 import ebooklib
+# import os
 from ebooklib import epub
-##from bs4 import BeautifulSoup
 
+# from bs4 import BeautifulSoup
+# import nltk
+
+## relative epub file path
 epub_file_path = './data/epubFile.epub'
+  
 
-def epub2thtml(epub_path):
-    book = epub.read_epub(epub_path)
-    chapters = []
-    for item in book.get_items():
-        if item.get_type() == ebooklib.ITEM_DOCUMENT:
-            chapters.append(item.get_content())
-    return chapters
 
-test = epub2thtml(epub_file_path) 
+book = epub.read_epub(epub_file_path)
 
-print(test)
+for doc in book.get_items_of_type(ebooklib.ITEM_DOCUMENT):
+    print(doc.content)
+
+ 
